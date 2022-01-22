@@ -2,4 +2,3 @@
 created To-do app using Flask.
 
 
-{link here} https://codingshinobi.herokuapp.com/
