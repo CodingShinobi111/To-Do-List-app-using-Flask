@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock title %}
+{% block body %}
+
+      <div class="container My-4">
+          <h1>Add a TO-DO</h1>
+        <form action="/" method="POST">
+            <div class="mb-3">
+              <label for="title" class="form-label">TO-DO Title</label>
+              <input type="text" class="form-control" name="title" id="title" >
+            </div>
+            <div class="mb-3">
+              <label for="desc" class="form-label">TO-DO Description</label>
+              <input type="text" class="form-control" name="desc" id="desc">
+            </div>
+           
+            <button type="submit" class="btn btn-dark">Submit</button>
+          </form>
+      </div>
+      <div class="container my-3">
+        <h1>Your TO-DO's</h1>
+        <table class="table">
+            <thead>
+              {% if AllTodo|length == 0 %}
+              <div class="alert alert-dark" role="alert">
+                No To-Do's Found. Add Your First To-Do!
+              </div>
+              {% else %}
+              <tr>
+                <th scope="col">Sno</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Time</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for todo in AllTodo %}
+              <tr>
+                <th scope="row">{{loop.index}}</th>
+                <td>{{todo.title}}</td>
+                <td>{{todo.desc}}</td>
+                <td>{{todo.date_created}}</td>
+                <td>
+                  <a href="/update/{{todo.Sno}}"type = "button" class="btn btn-outline-dark me-md-2 btn-sm">Update</button>
+                  <a href="/delete/{{todo.Sno}}"type = "button" class="btn btn-outline-dark  btn-sm">Delete</button>
+                <td>
+                
+                </td>
+              </tr>
+              {% endfor %}
+              {% endif %}
+              
+            </tbody>
+          </table>
+      </div>
+    
+ {% endblock body %}
